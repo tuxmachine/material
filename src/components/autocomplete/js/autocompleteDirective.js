@@ -128,6 +128,10 @@ angular
  *     the dropdown.<br/><br/>
  *     When the dropdown doesn't fit into the viewport, the dropdown will shrink
  *     as much as possible.
+ * @param {string=} aria-describedby A space-separated list of element IDs. This should contain the
+ *     IDs of any elements that describe this autocomplete. Screen readers will read the content of
+ *     these elements at the end of announcing that the autocomplete has been selected and
+ *     describing its current state. The descriptive elements do not need to be visible on the page.
  * @param {string=} md-dropdown-position Overrides the default dropdown position. Options: `top`, `bottom`.
  * @param {boolean=} ng-trim If set to false, the search text will be not trimmed automatically.
  *     Defaults to true.
@@ -254,6 +258,7 @@ function MdAutocomplete ($$mdSvgRegistry) {
       itemsExpr:          '@mdItems',
       itemText:           '&mdItemText',
       placeholder:        '@placeholder',
+      ariaDescribedBy:    '@?ariaDescribedby',
       noCache:            '=?mdNoCache',
       requireMatch:       '=?mdRequireMatch',
       selectOnMatch:      '=?mdSelectOnMatch',
@@ -392,6 +397,7 @@ function MdAutocomplete ($$mdSvgRegistry) {
                   role="combobox"\
                   aria-haspopup="true"\
                   aria-activedescendant=""\
+                  aria-describedby="{{ariaDescribedBy}}" \
                   aria-expanded="{{!$mdAutocompleteCtrl.hidden}}"/>\
               <div md-autocomplete-parent-scope md-autocomplete-replace>' + leftover + '</div>\
             </md-input-container>';
@@ -420,6 +426,7 @@ function MdAutocomplete ($$mdSvgRegistry) {
                 role="combobox"\
                 aria-haspopup="true"\
                 aria-activedescendant=""\
+                aria-describedby="{{ariaDescribedBy}}" \
                 aria-expanded="{{!$mdAutocompleteCtrl.hidden}}"/>';
         }
       }
